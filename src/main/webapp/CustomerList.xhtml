@@ -23,19 +23,26 @@
                 </f:facet>
                 <h:outputText value="#{item.name}"/>
             </h:column>
-            
+
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Ville"/>
                 </f:facet>
                 <h:outputText value="#{item.city}"/>
             </h:column>
-            
+
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Code de réduction"/>
                 </f:facet>
-                <h:outputText value="#{item.discount}"/>
+                <h:outputText value="#{item.discount.code += ' : ' += item.discount.rate += ' %'}" />
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Micro market"/>
+                </f:facet>
+                <h:outputText value="#{item.zip.zipCode += ' : ' += item.zip.radius += ' de rayon'}" />
             </h:column>
         </h:dataTable>
     </h:body>
