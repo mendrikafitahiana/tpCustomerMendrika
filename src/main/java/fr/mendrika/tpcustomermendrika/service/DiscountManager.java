@@ -4,41 +4,35 @@
  */
 package fr.mendrika.tpcustomermendrika.service;
 
-import fr.mendrika.tpcustomermendrika.entity.Customer;
+import fr.mendrika.tpcustomermendrika.entity.Discount;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.transaction.Transactional;
+import java.util.List;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-import jakarta.transaction.Transactional;
-import java.util.List;
 
 /**
- * Façade pour gérer les Customers.
  *
  * @author Mendrika Fitahiana
  */
 @RequestScoped
-public class CustomerManager {
+public class DiscountManager {
 
     @PersistenceContext(unitName = "customerPU")
     private EntityManager em;
 
-    @Transactional
-    public void persist(Customer customer) {
-        em.persist(customer);
-    }
-
-    public List<Customer> getAllCustomers() {
-        Query query = em.createNamedQuery("Customer.findAll");
+    public List<Discount> getAllDiscounts() {
+        Query query = em.createNamedQuery("Discount.findAll");
         return query.getResultList();
     }
 
     @Transactional
-    public Customer update(Customer customer) {
-        return em.merge(customer);
+    public Discount update(Discount discount) {
+        return em.merge(discount);
     }
 
-    public Customer findById(int idCustomer) {
-        return em.find(Customer.class, idCustomer);
+    public Discount findById(String code) {
+        return em.find(Discount.class, code);
     }
 }

@@ -10,7 +10,8 @@
     <h:body>
         <h1>Liste des clients</h1>
         <h:form>
-            <p:dataTable value="#{customerBean.customers}" var="item"
+            <p:dataTable value="#{customerBean.customers}" var="item" widgetVar="customerTable"
+                         emptyMessage="Aucun client avec ce critère"
                          paginator="true" rows="10"
                          rowsPerPageTemplate="2,4,8,10"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"> 
@@ -19,7 +20,7 @@
                     <f:facet name="header">
                         <h:outputText value="Id"/>
                     </f:facet>
-                    <h:outputText value="#{item.customerId}"/>
+                    <h:link outcome="customerDetails?idCustomer=#{item.customerId}" value="#{item.customerId}"/>
                 </p:column>
 
                 <p:column sortBy="#{item.name}" filterBy="#{item.name}" filterMatchMode="startsWith">
